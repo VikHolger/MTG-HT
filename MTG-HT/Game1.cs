@@ -9,6 +9,9 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
+    int _width = 0;
+    int _height = 0;
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -19,6 +22,17 @@ public class Game1 : Game
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
+        
+
+        _width = Window.ClientBounds.Width;
+        _height = Window.ClientBounds.Height;
+
+        _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+        _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+        _graphics.HardwareModeSwitch = true;
+
+        _graphics.IsFullScreen = true;
+        _graphics.ApplyChanges();
 
         base.Initialize();
     }
