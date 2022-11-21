@@ -11,6 +11,8 @@ public class Game1 : Game
 
     int _width = 0;
     int _height = 0;
+    Vector2 MousePos;
+    SpriteFont font;
 
     public Game1()
     {
@@ -42,6 +44,7 @@ public class Game1 : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         // TODO: use this.Content to load your game content here
+        font = this.Content.Load<SpriteFont>("Fonts/SourceCodePro");
     }
 
     protected override void Update(GameTime gameTime)
@@ -50,6 +53,8 @@ public class Game1 : Game
             Exit();
 
         // TODO: Add your update logic here
+        MouseState mouseState = Microsoft.Xna.Framework.Input.Mouse.GetState();
+        MousePos = new Vector2(mouseState.X, mouseState.Y);
 
         base.Update(gameTime);
     }
@@ -59,6 +64,10 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         // TODO: Add your drawing code here
+        _spriteBatch.Begin();
+
+        _spriteBatch.DrawString(font, "Mouse Position: " + MousePos.X + " " + MousePos.Y, new Vector2(50, 50), Color.Red);
+        _spriteBatch.End();
 
         base.Draw(gameTime);
     }
