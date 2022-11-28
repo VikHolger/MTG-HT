@@ -8,6 +8,7 @@ public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+    UI _ui; 
 
     int _width = 0;
     int _height = 0;
@@ -24,7 +25,7 @@ public class Game1 : Game
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
-        
+        _ui = new UI();
 
         _width = Window.ClientBounds.Width;
         _height = Window.ClientBounds.Height;
@@ -49,6 +50,8 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
+        _ui.update();
+
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
@@ -67,6 +70,7 @@ public class Game1 : Game
         _spriteBatch.Begin();
 
         _spriteBatch.DrawString(font, "Mouse Position: " + MousePos.X + " " + MousePos.Y, new Vector2(50, 50), Color.Red);
+        _spriteBatch.DrawString(font, "RM: " + _ui.RMC.ToString() + _ui.RMH.ToString() + " LM: " + _ui.LMC.ToString() + _ui.LMH.ToString(), new Vector2(50, 100), Color.Red);
         _spriteBatch.End();
 
         base.Draw(gameTime);
