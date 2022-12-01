@@ -1,3 +1,3 @@
 ﻿
-using var game = new MTG_HT.Game1();
+using var game = new MTG_HT.MTG_HT();
 game.Run();

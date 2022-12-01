@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MTG_HT;
 
-public class Game1 : Game
+public class MTG_HT : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
@@ -18,7 +18,7 @@ public class Game1 : Game
     SpriteFont font;
     Texture2D Ryan; // A naughty Temp
 
-    public Game1()
+    public MTG_HT()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
