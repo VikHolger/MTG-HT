@@ -87,13 +87,18 @@ namespace MTG_HT
         SpriteFont std;
         Texture2D tex;
         string name;
-        Color C = Color.White;
+        Color C;
 
-        public Toogle(Vector2 UL, Vector2 DR, string n)
+        public Toogle(Vector2 UL, Vector2 DR, string n, bool DefeaultState)
         {
             this.UL = UL;
             this.DR = DR;
             name = n;
+
+            if(DefeaultState)
+                C = Color.Gray;
+            else
+                C = Color.White;
         }
 
         public void Load (SpriteFont s, Texture2D t)
@@ -102,7 +107,15 @@ namespace MTG_HT
             tex = t;
         }
 
-        public bool clicked (Vector2 mousePos, bool c)
+        public bool getState()
+        {
+            if (C == Color.Gray)
+                return true;
+            else
+                return false;
+        }
+
+        public void Uppdate (Vector2 mousePos, bool c)
         {
             bool colide = true;
             
@@ -120,8 +133,6 @@ namespace MTG_HT
                 C = Color.Gray;
             else if (c)
                 C = Color.White;
-            
-            return colide;
         }
 
         public void Draw(SpriteBatch _s)

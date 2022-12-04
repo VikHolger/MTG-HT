@@ -39,10 +39,10 @@ class MainMenu
         Settings = new Button(new Vector2(1040, 850), new Vector2(1640, 925), "Settings");
             //"New games" button
         back = new Button(new Vector2(1250, 200), new Vector2(1500, 350), "BACK");
-        p2 = new Toogle (new Vector2(825, 500), new Vector2(1025, 700), "2");
-        p3 = new Toogle (new Vector2(1125, 500), new Vector2(1325, 700), "3");
-        p4 = new Toogle (new Vector2(1425, 500), new Vector2(1625, 700), "4");
-        p5 = new Toogle (new Vector2(1725, 500), new Vector2(1925, 700), "5");
+        p2 = new Toogle (new Vector2(825, 500), new Vector2(1025, 700), "2", false);
+        p3 = new Toogle (new Vector2(1125, 500), new Vector2(1325, 700), "3", false);
+        p4 = new Toogle (new Vector2(1425, 500), new Vector2(1625, 700), "4", true);
+        p5 = new Toogle (new Vector2(1725, 500), new Vector2(1925, 700), "5", false);
         commander = new Button (new Vector2(800, 1000), new Vector2(1300, 1200), "Commander");
         normmal = new Button (new Vector2(1500, 1000), new Vector2(2000, 1200), "Normal");
 
@@ -66,7 +66,7 @@ class MainMenu
         p4.Load(std, butTex);
         p5.Load(std, Ryan);
         commander.Load(std, butTex);
-        normmal.Load(std, butTex);
+        normmal.Load(std, Ryan);
     }
 
     public void Uppdate(Vector2 mp)
@@ -82,13 +82,13 @@ class MainMenu
             if(back.clicked(mp, _ui.LMH)) //Change state
                 MMS = MainMenu_State.Start;
 
-            p2.clicked(mp, _ui.LMH);
-            p3.clicked(mp, _ui.LMH);
-            p4.clicked(mp, _ui.LMH);
-            p5.clicked(mp, _ui.LMH);
-
             commander.clicked(mp, _ui.LMH);
             normmal.clicked(mp, _ui.LMH);
+
+            p2.Uppdate(mp, _ui.LMH);
+            p3.Uppdate(mp, _ui.LMH);
+            p4.Uppdate(mp, _ui.LMH);
+            p5.Uppdate(mp, _ui.LMH);
         }
     }
 
