@@ -5,5 +5,10 @@ namespace MTG_HT;
 
 class HT
 {
-
+    //Classes
+    UI _ui;
+    
+    //Varriables
+    int playes;
+    bool commander;
 }
