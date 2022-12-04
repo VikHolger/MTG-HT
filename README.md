@@ -11,8 +11,8 @@ this will list a sort off roadmap on how things will be developed
 
 ✔ : have been deployed on main branch  
 🛠 : have been deployed on dev branch  
-✘ : have nor been developed  
 ✎ : under development  
+✘ : have nor been developed  
 
 ---
 
