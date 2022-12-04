@@ -63,7 +63,7 @@ public class MTG_HT : Game
         //Load Content
         std = this.Content.Load<SpriteFont>("Fonts/SourceCodePro");
         ButtonTex = this.Content.Load<Texture2D>("Sprites/ButtonWhite");
-        Ryan = this.Content.Load<Texture2D>("Sprites/Button_Temp");
+        Ryan = this.Content.Load<Texture2D>("Sprites/ButtonInop");
 
         //Give texture to classes
         MM.Load(std, ButtonTex, Ryan);

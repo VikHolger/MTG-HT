@@ -20,9 +20,10 @@ this will list a sort off roadmap on how things will be developed
 ✔ : initial commit  
 🛠 : Mouse status and information  
 🛠 : Buttons class  
-✎ : Main Menu (Opening screen)  
-✎ : Main Menu (New game screen)  
-✘ : Game class  
+🛠 : Toogle Button class  
+🛠 : Main Menu (Opening screen)  
+🛠 : Main Menu (New game screen)  
+✎ : Health Tracker class  
 ✘ : Working Commander game 4 player  
 
 ## ✘ : 4 player
