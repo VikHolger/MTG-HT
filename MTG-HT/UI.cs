@@ -75,7 +75,7 @@ namespace MTG_HT
         public void Draw(SpriteBatch _s)
         {
             _s.Draw(tex, new Rectangle((int)UL.X, (int)UL.Y, (int)(DR.X - UL.X), (int)(DR.Y - UL.Y)), new Rectangle(0, 0, tex.Width, tex.Height), C);
-            _s.DrawString(std, name, new Vector2(UL.X + (DR.X - UL.X)- ((name.Length/2)*(std.Texture.Width/3)), UL.Y + ((DR.Y - UL.Y)/2) - (std.LineSpacing/2)), Color.Red);
+            _s.DrawString(std, name, new Vector2(UL.X + (DR.X - UL.X)/2 - (name.Length*std.Texture.Width/22), UL.Y + ((DR.Y - UL.Y)/2) - (std.LineSpacing/2)), Color.Red);
         }
     }
 }

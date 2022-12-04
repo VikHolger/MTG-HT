@@ -19,7 +19,7 @@ this will list a sort off roadmap on how things will be developed
 ## ✎ : Commander 4 player  
 ✔ : initial commit  
 🛠 : Mouse status and information  
-✎ : Buttons class  
+🛠 : Buttons class  
 ✎ : Main Menu (Opening screen)  
 ✎ : Main Menu (New game screen)  
 ✘ : Game class  
