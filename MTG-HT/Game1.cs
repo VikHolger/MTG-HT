@@ -6,17 +6,30 @@ namespace MTG_HT;
 
 public class MTG_HT : Game
 {
+    enum GameState
+    {
+        MainMenu,
+        Game,
+        Creddits
+    }
+
+    //Classes
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     UI _ui; 
-    Button A;
+    MainMenu MM;
 
-    int _width = 0;
-    int _height = 0;
-    string temp = "";
+    //Fonts & Assets
+    SpriteFont std;
+    Texture2D ButtonTex, Ryan;
+
+    //Variables
     Vector2 MousePos;
-    SpriteFont font;
-    Texture2D Ryan; // A naughty Temp
+    int _width = 0, _height = 0; //Fullscreen
+
+    //Temp
+    Button A;
+    string temp = "";
 
     public MTG_HT()
     {
@@ -27,9 +40,8 @@ public class MTG_HT : Game
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
-        _ui = new UI();
 
+        //Fullscreen
         _width = Window.ClientBounds.Width;
         _height = Window.ClientBounds.Height;
 
@@ -40,8 +52,14 @@ public class MTG_HT : Game
         _graphics.IsFullScreen = true;
         _graphics.ApplyChanges();
 
-        A = new Button(new Vector2(500, 500), new Vector2(750, 750));
+        //Classes
+        _ui = new UI();
+        MM = new MainMenu(_ui);
 
+        //Temp
+        A = new Button(new Vector2(500, 500), new Vector2(750, 750), "Test");
+
+        //Initialize
         base.Initialize();
     }
 
@@ -49,14 +67,21 @@ public class MTG_HT : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // TODO: use this.Content to load your game content here
-        font = this.Content.Load<SpriteFont>("Fonts/SourceCodePro");
+        //Load Content
+        std = this.Content.Load<SpriteFont>("Fonts/SourceCodePro");
+        ButtonTex = this.Content.Load<Texture2D>("Sprites/ButtonWhite");
         Ryan = this.Content.Load<Texture2D>("Sprites/Button_Temp");
+
+        //Give texture to classes
+        MM.Load(std, ButtonTex, Ryan);
+
+        A.Load(std, ButtonTex);
     }
 
     protected override void Update(GameTime gameTime)
     {
         _ui.update();
+        MM.Uppdate(MousePos);
 
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
@@ -65,10 +90,8 @@ public class MTG_HT : Game
         MouseState mouseState = Microsoft.Xna.Framework.Input.Mouse.GetState();
         MousePos = new Vector2(mouseState.X, mouseState.Y);
 
-        if (_ui.LMH)
-            temp = A.clicked(MousePos).ToString();
-        else
-            temp = "False";
+        temp = A.clicked(MousePos, _ui.LMH).ToString();
+
 
         base.Update(gameTime);
     }
@@ -80,11 +103,14 @@ public class MTG_HT : Game
         // TODO: Add your drawing code here
         _spriteBatch.Begin();
 
-        _spriteBatch.DrawString(font, "Mouse Position: " + MousePos.X + " " + MousePos.Y, new Vector2(50, 50), Color.Red);
-        _spriteBatch.DrawString(font, "RM: " + _ui.RMC.ToString() + _ui.RMH.ToString() + " LM: " + _ui.LMC.ToString() + _ui.LMH.ToString(), new Vector2(50, 100), Color.Red);
-        _spriteBatch.DrawString(font, "Buuton is pressed?: " + temp, new Vector2(50, 150), Color.Red);
+        _spriteBatch.DrawString(std, "Mouse Position: " + MousePos.X + " " + MousePos.Y, new Vector2(50, 50), Color.Red);
+        _spriteBatch.DrawString(std, "RM: " + _ui.RMC.ToString() + _ui.RMH.ToString() + " LM: " + _ui.LMC.ToString() + _ui.LMH.ToString(), new Vector2(50, 100), Color.Red);
+        _spriteBatch.DrawString(std, "Buton is pressed?: " + temp, new Vector2(50, 150), Color.Red);
 
-        _spriteBatch.Draw(Ryan, new Rectangle((int)A.UL.X, (int)A.UL.Y, (int)(A.DR.X - A.UL.X), (int)(A.DR.Y - A.UL.Y)), new Rectangle(0, 0, Ryan.Width, Ryan.Height), Color.White);
+        A.Draw(_spriteBatch);
+
+        MM.Draw(_spriteBatch);
+        
         _spriteBatch.End();
 
         base.Draw(gameTime);
