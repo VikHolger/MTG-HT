@@ -78,4 +78,56 @@ namespace MTG_HT
             _s.DrawString(std, name, new Vector2(UL.X + (DR.X - UL.X)/2 - (name.Length*std.Texture.Width/22), UL.Y + ((DR.Y - UL.Y)/2) - (std.LineSpacing/2)), Color.Red);
         }
     }
+
+    class Toogle
+    {
+        //Variables & more
+        public Vector2 UL {get;}
+        public Vector2 DR {get;}
+        SpriteFont std;
+        Texture2D tex;
+        string name;
+        Color C = Color.White;
+
+        public Toogle(Vector2 UL, Vector2 DR, string n)
+        {
+            this.UL = UL;
+            this.DR = DR;
+            name = n;
+        }
+
+        public void Load (SpriteFont s, Texture2D t)
+        {
+            std = s;
+            tex = t;
+        }
+
+        public bool clicked (Vector2 mousePos, bool c)
+        {
+            bool colide = true;
+            
+            if (UL.X > mousePos.X && c)
+                colide = false;
+            if (UL.Y > mousePos.Y && c)
+                colide = false;
+            if (DR.X < mousePos.X && c)
+                colide = false;
+            if (DR.Y < mousePos.Y && c)
+                colide = false;
+
+            //Change Collor
+            if(colide && c)
+                C = Color.Gray;
+            else if (c)
+                C = Color.White;
+            
+            return colide;
+        }
+
+        public void Draw(SpriteBatch _s)
+        {
+            _s.Draw(tex, new Rectangle((int)UL.X, (int)UL.Y, (int)(DR.X - UL.X), (int)(DR.Y - UL.Y)), new Rectangle(0, 0, tex.Width, tex.Height), C);
+            _s.DrawString(std, name, new Vector2(UL.X + (DR.X - UL.X)/2 - (name.Length*std.Texture.Width/22), UL.Y + ((DR.Y - UL.Y)/2) - (std.LineSpacing/2)), Color.Red);
+        }
+    }
 }

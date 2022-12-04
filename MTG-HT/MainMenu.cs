@@ -14,7 +14,6 @@ class MainMenu
     }
 
     //Classes
-    private SpriteBatch _spriteBatch;
     UI _ui; 
 
     //Fonts & Assets
@@ -23,7 +22,7 @@ class MainMenu
 
     //Buttons & TBA
     Button NewGame, Settings;
-    Button p2, p3, p4, p5;
+    Toogle p2, p3, p4, p5;
     Button commander, normmal, back;
 
 
@@ -40,10 +39,10 @@ class MainMenu
         Settings = new Button(new Vector2(1040, 850), new Vector2(1640, 925), "Settings");
             //"New games" button
         back = new Button(new Vector2(1250, 200), new Vector2(1500, 350), "BACK");
-        p2 = new Button (new Vector2(825, 500), new Vector2(1025, 700), "2");
-        p3 = new Button (new Vector2(1125, 500), new Vector2(1325, 700), "3");
-        p4 = new Button (new Vector2(1425, 500), new Vector2(1625, 700), "4");
-        p5 = new Button (new Vector2(1725, 500), new Vector2(1925, 700), "5");
+        p2 = new Toogle (new Vector2(825, 500), new Vector2(1025, 700), "2");
+        p3 = new Toogle (new Vector2(1125, 500), new Vector2(1325, 700), "3");
+        p4 = new Toogle (new Vector2(1425, 500), new Vector2(1625, 700), "4");
+        p5 = new Toogle (new Vector2(1725, 500), new Vector2(1925, 700), "5");
         commander = new Button (new Vector2(800, 1000), new Vector2(1300, 1200), "Commander");
         normmal = new Button (new Vector2(1500, 1000), new Vector2(2000, 1200), "Normal");
 
