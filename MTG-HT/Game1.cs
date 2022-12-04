@@ -27,10 +27,6 @@ public class MTG_HT : Game
     Vector2 MousePos;
     int _width = 0, _height = 0; //Fullscreen
 
-    //Temp
-    Button A;
-    string temp = "";
-
     public MTG_HT()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -56,9 +52,6 @@ public class MTG_HT : Game
         _ui = new UI();
         MM = new MainMenu(_ui);
 
-        //Temp
-        A = new Button(new Vector2(500, 500), new Vector2(750, 750), "Test");
-
         //Initialize
         base.Initialize();
     }
@@ -75,23 +68,21 @@ public class MTG_HT : Game
         //Give texture to classes
         MM.Load(std, ButtonTex, Ryan);
 
-        A.Load(std, ButtonTex);
     }
 
     protected override void Update(GameTime gameTime)
     {
-        _ui.update();
-        MM.Uppdate(MousePos);
-
+        //Exit game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
+        //Uppdate Mousy things
         MouseState mouseState = Microsoft.Xna.Framework.Input.Mouse.GetState();
         MousePos = new Vector2(mouseState.X, mouseState.Y);
 
-        temp = A.clicked(MousePos, _ui.LMH).ToString();
-
+        //Uppdate classes
+        _ui.update();
+        MM.Uppdate(MousePos);
 
         base.Update(gameTime);
     }
@@ -100,15 +91,9 @@ public class MTG_HT : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // TODO: Add your drawing code here
         _spriteBatch.Begin();
 
-        _spriteBatch.DrawString(std, "Mouse Position: " + MousePos.X + " " + MousePos.Y, new Vector2(50, 50), Color.Red);
-        _spriteBatch.DrawString(std, "RM: " + _ui.RMC.ToString() + _ui.RMH.ToString() + " LM: " + _ui.LMC.ToString() + _ui.LMH.ToString(), new Vector2(50, 100), Color.Red);
-        _spriteBatch.DrawString(std, "Buton is pressed?: " + temp, new Vector2(50, 150), Color.Red);
-
-        A.Draw(_spriteBatch);
-
+        //Draw mainscreen
         MM.Draw(_spriteBatch);
         
         _spriteBatch.End();
