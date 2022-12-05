@@ -11,4 +11,19 @@ class HT
     //Varriables
     int playes;
     bool commander;
+
+    HT ()
+    {
+
+    }
+
+    public void Uppdate ()
+    {
+
+    }
+
+    public void Draw ()
+    {
+
+    }
 }
